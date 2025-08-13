@@ -24,6 +24,12 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				// TADS specific colors
+				'surface-dark': 'hsl(var(--surface-dark))',
+				'surface-darker': 'hsl(var(--surface-darker))',
+				'accent-red': 'hsl(var(--accent-red))',
+				
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'

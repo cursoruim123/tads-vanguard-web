@@ -2,39 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* TADS Design System - Modern Tech Company
+All colors MUST be HSL. Based on: #FAFAFA, #212121, #1D1E24, #15161C, #F11348
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core TADS palette */
+    --background: 0 0% 98%; /* #FAFAFA */
+    --foreground: 0 0% 13%; /* #212121 */
+    
+    --surface-dark: 220 8% 11%; /* #1D1E24 */
+    --surface-darker: 225 12% 9%; /* #15161C */
+    --accent-red: 350 90% 51%; /* #F11348 */
+    
+    /* Tech gradients */
+    --gradient-tech: linear-gradient(135deg, hsl(var(--surface-darker)), hsl(var(--surface-dark)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--surface-darker)) 0%, hsl(var(--surface-dark)) 50%, hsl(350 90% 51% / 0.1) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(0 0% 96%) 100%);
+    
+    /* Glows and shadows */
+    --glow-red: 0 0 30px hsl(var(--accent-red) / 0.3);
+    --shadow-tech: 0 10px 40px -10px hsl(var(--surface-darker) / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.1);
+    
+    /* Component tokens */
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 13%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 13%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 350 90% 51%;
+    --primary-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --secondary: 220 8% 11%;
+    --secondary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 350 90% 51%;
+    --accent-foreground: 0 0% 98%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 350 90% 51%;
+    --destructive-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 350 90% 51%;
 
     --radius: 0.5rem;
 
@@ -100,6 +116,61 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer components {
+  /* Tech animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  /* Glass effect */
+  .glass {
+    backdrop-filter: blur(16px);
+    background: hsl(var(--background) / 0.8);
+  }
+  
+  /* Tech grid background */
+  .tech-grid {
+    background-image: 
+      linear-gradient(hsl(var(--surface-dark) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--surface-dark) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  from { box-shadow: var(--glow-red); }
+  to { box-shadow: 0 0 50px hsl(var(--accent-red) / 0.5); }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
